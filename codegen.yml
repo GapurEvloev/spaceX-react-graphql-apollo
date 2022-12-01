@@ -1,0 +1,15 @@
+overwrite: true
+schema: 'http://coding-challenge-a8s934ksd.eu-central-1.elasticbeanstalk.com/graphql'
+documents: './src/**/*.graphql'
+generates:
+  ./src/types.generated.ts:
+    plugins:
+      - typescript
+  ./src:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.ts
+      baseTypesPath: types.generated.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo

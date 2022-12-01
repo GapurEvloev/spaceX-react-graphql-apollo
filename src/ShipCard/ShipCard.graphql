@@ -1,0 +1,7 @@
+fragment ShipCard on Ship {
+    name
+    image
+    type
+    url
+    id
+}

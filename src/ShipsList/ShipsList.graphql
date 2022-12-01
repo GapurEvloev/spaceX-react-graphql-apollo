@@ -1,0 +1,5 @@
+query getPastShips($limit: Int) {
+    ships(limit: $limit) {
+        ...ShipCard
+    }
+}
