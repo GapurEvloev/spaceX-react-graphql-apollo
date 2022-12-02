@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/Header";
-import Main from "./components/Main";
+import Main from "./pages/Main";
 import {Route, Routes} from "react-router-dom";
-import ShipPage from "./components/ShipPage";
+import ShipPage from "./pages/ShipPage";
 
 function App() {
   return (

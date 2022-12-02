@@ -1,6 +1,6 @@
 import React from "react";
 import {Container} from "@mui/material";
-import ShipsList from "../ShipsList";
+import ShipsList from "../../components/ShipsList";
 
 const Main: React.FC = () => {
   return (

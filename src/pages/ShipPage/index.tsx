@@ -2,12 +2,12 @@ import React from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetPastOneShipQuery} from "./ShipPage.generated";
 import {Card, CardContent, CardMedia, Typography, Container, Button, Stack} from "@mui/material";
-import Spinner from "../Spinner";
+import Spinner from "../../components/Spinner";
 
 const ShipPage: React.FC = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const shipId: any = params.id;
+  const shipId = params.id!;
 
   const {data, loading, error} = useGetPastOneShipQuery({
     variables: {
@@ -18,6 +18,10 @@ const ShipPage: React.FC = () => {
   const goBack = () => {
     navigate(-1);
   };
+
+  if (error) {
+    return <div>{error.message}</div>
+  }
 
   return (
     <Container maxWidth="lg" style={{marginBottom: "4em"}}>

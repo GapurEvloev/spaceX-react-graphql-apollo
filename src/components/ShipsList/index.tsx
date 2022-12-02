@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Tabs, Tab, Typography, FormControl, Select, InputLabel, MenuItem, SelectChangeEvent} from "@mui/material";
+import {Box, Tabs, Tab, Typography} from "@mui/material";
 import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
 import ViewComfyAltRoundedIcon from '@mui/icons-material/ViewComfyAltRounded';
 import {useGetPastShipsQuery} from "./ShipsList.generated";
@@ -34,8 +34,8 @@ const ShipsList: React.FC = () => {
   };
 
   React.useEffect(() => {
-    refetch({find: {type: typeFromParams}})
-  }, [typeFromParams]);
+    refetch({find: {type: typeFromParams}});
+  }, [typeFromParams, refetch]);
 
   if (error) {
     return <div>{error.message}</div>;
