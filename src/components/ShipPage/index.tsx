@@ -22,9 +22,6 @@ const ShipPage: React.FC = () => {
   return (
     <Container maxWidth="lg" style={{marginBottom: "4em"}}>
       {loading && <Spinner/>}
-      {/*{data?.ship && <div className="page-intro">*/}
-      {/*  {data?.ship?.image && <img src={data?.ship?.image} alt="" className="page-intro__img"/>}*/}
-      {/*</div>}*/}
       <Card>
         <CardMedia
           component="img"

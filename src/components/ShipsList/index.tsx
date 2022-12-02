@@ -33,8 +33,6 @@ const ShipsList: React.FC = () => {
     refetch();
   };
 
-  console.log(networkStatus)
-
   React.useEffect(() => {
     refetch({find: {type: typeFromParams}})
   }, [typeFromParams]);
