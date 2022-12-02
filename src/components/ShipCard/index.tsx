@@ -23,9 +23,6 @@ const ShipCard: React.FC<Props> = ({ship}) => {
           <Typography variant="body2" color="text.secondary">
             {ship?.type}
           </Typography>
-          {ship?.url && <Link href={ship?.url} target="_blank">
-            Open in marinetraffic
-          </Link>}
         </CardContent>
       </Card>
     </Grid>

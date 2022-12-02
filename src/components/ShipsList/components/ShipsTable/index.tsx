@@ -38,7 +38,7 @@ const ShipsTable: React.FC<Props> = ({ships}) => {
                         alt=""
                       />
                     }
-                    placement="bottom-start"
+                    placement="top-end"
                   >
                     <Button>Image</Button>
                   </Tooltip>}

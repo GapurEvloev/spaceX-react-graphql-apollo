@@ -7,17 +7,22 @@ import ShipsCards from "./components/ShipsCards";
 import ShipsTable from "./components/ShipsTable";
 import FilterDropdown from "../FilterDropdown";
 import {useSearchParams} from "react-router-dom";
+import {NetworkStatus} from "@apollo/client";
+import {InView} from "react-intersection-observer";
+import Spinner from "../Spinner";
 
 const SHIP_TYPES = ['High Speed Craft', 'Cargo', 'Tug', 'Barge'];
 
 const ShipsList: React.FC = () => {
   const [shipsView, setShipsView] = React.useState(0);
+  const [fullyLoaded, setFullyLoaded] = React.useState(false);
   const [searchParams] = useSearchParams({});
   const typeFromParams = searchParams.get('type');
 
-  console.log(typeFromParams)
-  const {data, loading, error, refetch} = useGetPastShipsQuery({
+  const {data, loading, networkStatus, error, refetch, fetchMore, variables} = useGetPastShipsQuery({
+    notifyOnNetworkStatusChange: true,
     variables: {
+      offset: 0,
       limit: 9,
       find: {type:typeFromParams}
     }
@@ -25,12 +30,18 @@ const ShipsList: React.FC = () => {
 
   const handleChangeView = (event: React.SyntheticEvent, newValue: number) => {
     setShipsView(newValue);
-    refetch()
+    refetch();
   };
+
+  console.log(networkStatus)
 
   React.useEffect(() => {
     refetch({find: {type: typeFromParams}})
   }, [typeFromParams]);
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
 
   return (
     <>
@@ -42,11 +53,10 @@ const ShipsList: React.FC = () => {
           <Tab icon={<ListAltRoundedIcon fontSize={"medium"}/>} aria-label="list"/>
           <Tab icon={<ViewComfyAltRoundedIcon fontSize={"medium"}/>} aria-label="gallery"/>
         </Tabs>
-        <FilterDropdown items={SHIP_TYPES} />
+        <FilterDropdown items={SHIP_TYPES} name={"type"} />
       </Box>
-      {error && <p className={"error"}>{error.message}</p>}
       {
-        loading ? <p className={"caption"}>Loading...</p> :
+        networkStatus === NetworkStatus.loading ? <Spinner /> :
         (
           data?.ships && (
             shipsView === 1 ?
@@ -54,6 +64,25 @@ const ShipsList: React.FC = () => {
               <ShipsTable ships={data?.ships} />
           )
         )
+      }
+      {
+        data?.ships && variables?.limit && (networkStatus !== NetworkStatus.fetchMore && data?.ships?.length % variables?.limit === 0 && !fullyLoaded && (
+          <InView
+            onChange={async (inView) => {
+              if (inView) {
+                const result = await fetchMore({
+                  variables: {
+                    offset: data?.ships?.length
+                  }
+                });
+                setFullyLoaded(!result?.data?.ships?.length);
+              }
+            }}
+          />
+        ))
+      }
+      {
+        loading && <Spinner />
       }
     </>
   )

@@ -4,15 +4,23 @@ import { useSearchParams } from "react-router-dom";
 
 interface Props {
   items: string[]
+  name: string
 }
 
-const FilterDropdown: React.FC<Props> = ({items}) => {
-  const [type, setType] = React.useState('');
+const FilterDropdown: React.FC<Props> = ({items, name}) => {
   const [searchParams, setSearchParams] = useSearchParams({});
+  const paramsValue = searchParams.get(name)
+  const [filter, setFilter] = React.useState(paramsValue);
 
-  const handleChangeType = (event: SelectChangeEvent) => {
-    setType(event.target.value);
-    setSearchParams({ type: event.target.value });
+  const handleChangeFilter = (event: SelectChangeEvent) => {
+    if (!event.target.value) {
+      setFilter(event.target.value);
+      searchParams.delete(name);
+      setSearchParams(searchParams);
+      return
+    }
+    setFilter(event.target.value);
+    setSearchParams({ [name]: event.target.value });
   };
 
   return (
@@ -21,8 +29,8 @@ const FilterDropdown: React.FC<Props> = ({items}) => {
       <Select
         labelId="select-filter"
         id="select-filter"
-        value={type}
-        onChange={handleChangeType}
+        value={filter || ""}
+        onChange={handleChangeFilter}
         label="Age"
       >
         <MenuItem value="">

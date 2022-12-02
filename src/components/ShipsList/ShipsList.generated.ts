@@ -5,6 +5,7 @@ import { ShipCardFragmentDoc } from '../ShipCard/ShipCard.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetPastShipsQueryVariables = Types.Exact<{
+  offset?: Types.InputMaybe<Types.Scalars['Int']>;
   limit?: Types.InputMaybe<Types.Scalars['Int']>;
   find?: Types.InputMaybe<Types.ShipsFind>;
 }>;
@@ -14,8 +15,8 @@ export type GetPastShipsQuery = { __typename?: 'Query', ships?: Array<{ __typena
 
 
 export const GetPastShipsDocument = gql`
-    query getPastShips($limit: Int, $find: ShipsFind) {
-  ships(limit: $limit, find: $find) {
+    query getPastShips($offset: Int, $limit: Int, $find: ShipsFind) {
+  ships(offset: $offset, limit: $limit, find: $find) {
     ...ShipCard
   }
 }
@@ -33,6 +34,7 @@ export const GetPastShipsDocument = gql`
  * @example
  * const { data, loading, error } = useGetPastShipsQuery({
  *   variables: {
+ *      offset: // value for 'offset'
  *      limit: // value for 'limit'
  *      find: // value for 'find'
  *   },
