@@ -1,5 +1,6 @@
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import {offsetLimitPagination} from "@apollo/client/utilities";
+import { API_URL } from "../constants/repo";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -12,7 +13,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: "http://coding-challenge-a8s934ksd.eu-central-1.elasticbeanstalk.com/graphql",
+  uri: API_URL,
   cache,
   connectToDevTools: true,
 });
