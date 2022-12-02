@@ -1,0 +1,10 @@
+query getPastOneShip($shipId: ID!) {
+    ship(id: $shipId) {
+        id
+        image
+        name
+        type
+        url
+        year_built
+    }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link as RouterLink} from 'react-router-dom';
 import {TableContainer, Table, TableHead, TableRow, TableBody, TableCell, Tooltip, Button, Link, Paper, } from "@mui/material";
 import {Ship} from "../../../../types.generated";
 
@@ -26,7 +27,9 @@ const ShipsTable: React.FC<Props> = ({ships}) => {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {ship?.name}
+                  <RouterLink to={`ship/${ship?.id}`}>
+                    {ship?.name}
+                  </RouterLink>
                 </TableCell>
                 <TableCell align="right">{ship?.type}</TableCell>
                 <TableCell align="right">
