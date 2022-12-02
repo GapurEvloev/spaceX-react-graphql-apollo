@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid} from "@mui/material";
 import ShipCard from "../../../ShipCard";
-import {Ship} from "../../../types.generated";
+import {Ship} from "../../../../types.generated";
 
 interface Props {
   ships?: (Ship | null)[]

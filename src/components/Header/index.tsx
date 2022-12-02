@@ -1,6 +1,6 @@
 import React from "react";
 import {AppBar, Container, Toolbar} from "@mui/material";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 
 const Header: React.FC = () => {
   return (

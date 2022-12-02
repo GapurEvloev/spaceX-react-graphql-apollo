@@ -14,7 +14,7 @@ const ShipCard: React.FC<Props> = ({ship}) => {
           component="img"
           alt="green iguana"
           height="250"
-          image={ship?.image ?? "https://mui.com/static/images/cards/contemplative-reptile.jpg"}
+          image={ship?.image ?? "https://www.spacex.com/static/images/share.jpg"}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

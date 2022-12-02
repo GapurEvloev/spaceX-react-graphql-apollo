@@ -1,6 +1,6 @@
 import React from 'react';
 import {TableContainer, Table, TableHead, TableRow, TableBody, TableCell, Tooltip, Button, Link, Paper, } from "@mui/material";
-import {Ship} from "../../../types.generated";
+import {Ship} from "../../../../types.generated";
 
 interface Props {
   ships?: (Ship | null)[]
@@ -38,7 +38,7 @@ const ShipsTable: React.FC<Props> = ({ships}) => {
                         alt=""
                       />
                     }
-                    placement="bottom-end"
+                    placement="bottom-start"
                   >
                     <Button>Image</Button>
                   </Tooltip>}
