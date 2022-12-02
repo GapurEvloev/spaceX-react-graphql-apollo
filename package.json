@@ -1,7 +1,6 @@
 {
   "name": "spacex-ships",
   "version": "0.1.0",
-  "homepage": "https://gapurevloev.github.io/spaceX-react-graphql-apollo/",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.1",
@@ -31,9 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "graphql-codegen --config codegen.yml",
-    "deploy": "npm run build && npm run build-gh-pages",
-    "build-gh-pages": "gh-pages -d build"
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +56,6 @@
     "@graphql-codegen/typescript": "^2.8.2",
     "@graphql-codegen/typescript-operations": "^2.5.7",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
-    "gh-pages": "^4.0.0",
     "prettier": "^2.8.0",
     "sass": "^1.56.1"
   }
