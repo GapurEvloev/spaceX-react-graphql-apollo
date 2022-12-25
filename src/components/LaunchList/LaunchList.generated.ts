@@ -1,6 +1,7 @@
 import * as Types from '../../types.generated';
 
 import { gql } from '@apollo/client';
+import { LaunchCardFragmentDoc } from '../LaunchCard/LaunchCard.generated';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetPastLaunchesQueryVariables = Types.Exact<{
@@ -14,14 +15,10 @@ export type GetPastLaunchesQuery = { __typename?: 'Query', launchesPast?: Array<
 export const GetPastLaunchesDocument = gql`
     query getPastLaunches($limit: Int) {
   launchesPast(limit: $limit) {
-    mission_name
-    launch_date_utc
-    links {
-      mission_patch_small
-    }
+    ...LaunchCard
   }
 }
-    `;
+    ${LaunchCardFragmentDoc}`;
 
 /**
  * __useGetPastLaunchesQuery__
