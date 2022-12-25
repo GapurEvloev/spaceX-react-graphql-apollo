@@ -1,4 +1,4 @@
-query getPastShips($offset: Int, $limit: Int, $find: ShipsFind) {
+query getShips($offset: Int, $limit: Int, $find: ShipsFind) {
     ships(offset: $offset, limit: $limit, find: $find) {
         ...ShipCard
     }

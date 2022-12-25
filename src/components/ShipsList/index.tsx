@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Tabs, Tab, Typography } from "@mui/material";
 import ListAltRoundedIcon from "@mui/icons-material/ListAltRounded";
 import ViewComfyAltRoundedIcon from "@mui/icons-material/ViewComfyAltRounded";
-import { useGetPastShipsQuery } from "./ShipsList.generated";
+import { useGetShipsQuery } from "./ShipsList.generated";
 import ShipsCards from "./components/ShipsCards";
 import ShipsTable from "./components/ShipsTable";
 import FilterDropdown from "../FilterDropdown";
@@ -19,7 +19,7 @@ const ShipsList: React.FC = () => {
   const typeFromParams = searchParams.get("type");
 
   const { data, loading, networkStatus, error, refetch, fetchMore, variables } =
-    useGetPastShipsQuery({
+    useGetShipsQuery({
       notifyOnNetworkStatusChange: true,
       variables: {
         offset: 0,
